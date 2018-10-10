@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import '../Square/Square.css'
 import { Square } from '../Square/Square.js';
 
-class Board extends React.Component {
+export class Board extends React.Component {
+    
+    
     renderSquare(i) {
         return <Square />;
     } 
@@ -77,6 +79,6 @@ class Board extends React.Component {
 
 
             </div>
-        )
+        );
     }
 }
