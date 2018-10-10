@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+import {Board} from '../src/Components/Board/Board.js'
 
 class App extends Component {
   render() {
@@ -26,3 +28,8 @@ class App extends Component {
 }
 
 export default App;
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
