@@ -4,11 +4,29 @@ import './Board.css'
 import { Square } from '../Square/Square.js';
 
 export class Board extends React.Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            isBlueNext: true,
+            squares: Array(42).fill(null),
+            clickedSquares: [],
+        };
+    }
     
     renderSquare(i) {
-        return <Square value={i}/>;
+        return <Square 
+        color={this.state.squares[i]}
+        onClick={this.handleClick(i)}/>;
     } 
+
+    handleClick(i) {
+        const squares = this.state.squares.slice();
+        squares[i] = this.state.isBlueNext ? "blue" : "red";
+        this.state.clickedSquares.push(i);
+        this.setState(
+            {squares: squares,
+            isBlueNext: !this.state.isBlueNext});
+    }
     
     render() {
         const status = "Next player: Blue";

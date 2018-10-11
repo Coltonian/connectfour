@@ -7,6 +7,7 @@ import {Board} from '../src/Components/Board/Board';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
   }
   
   render() {
