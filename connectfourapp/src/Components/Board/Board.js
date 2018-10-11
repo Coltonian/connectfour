@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../Square/Square.css'
+import './Board.css'
 import { Square } from '../Square/Square.js';
 
 export class Board extends React.Component {
     
     
     renderSquare(i) {
-        return <Square />;
+        return <Square value={i}/>;
     } 
     
     render() {
