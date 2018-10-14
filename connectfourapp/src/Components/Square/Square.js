@@ -11,6 +11,7 @@ export class Square extends React.Component {
             <button 
             className={"square " + this.props.color} 
             onClick={() => this.props.onClick()}> 
+            {this.props.value}
             </button>
         );
     }
