@@ -26,6 +26,13 @@ export class Board extends React.Component {
         return this.state.legalSquares.some(value => value == i);
     } 
 
+    updateLegalSquare(i) {
+        let legalSquares = this.state.legalSquares.filter(value => value !== i);
+        this.setState({
+            legalSquares: [...legalSquares, (i + 7)]
+        });
+    }
+
     handleClick(i) {
         if(this.isLegalSquare(i)) {
             this.updateLegalSquare(i);
@@ -44,14 +51,6 @@ export class Board extends React.Component {
             isBlueNext: !this.state.isBlueNext
         });
 
-    }
-
-    updateLegalSquare(i) {
-        let legalSquares = this.state.legalSquares.splice();
-        legalSquares = legalSquares.filter(value => value !== i).push((i + 7));
-        this.setState(
-            {legalSquares: legalSquares}
-        )
     }
 
     calculateWinner(squares) {
