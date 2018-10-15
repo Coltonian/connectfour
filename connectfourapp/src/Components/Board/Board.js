@@ -7,14 +7,22 @@ export class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            //tracks what color goes on this turn
             isBlueNext: true,
+
+            //starting board of blank squares
             squares: Array(42).fill(null),
-            clickedSquares: [],
+
+            //track which squares are clicked by color
+            clickedSquaresBlue: [],
+            clickedSquaresRed: [],
+
             //these are the indices for the squares array that are considered legal moves on a given turn
             legalSquares: [0, 1, 2, 3, 4, 5, 6],
         };
     }
     
+    //prints a 7x6 grid of square components
     renderSquare(i) {
         return <Square 
         value={i}
@@ -22,10 +30,12 @@ export class Board extends React.Component {
         onClick={() => this.handleClick(i)}/>;
     } 
 
+    //determines if a square can legally be clicked by validating against the legalsquares array in state
     isLegalSquare(i){
         return this.state.legalSquares.some(value => value == i);
     } 
 
+    //updates legalsquares array once a player submits a legal move
     updateLegalSquare(i) {
         let legalSquares = this.state.legalSquares.filter(value => value !== i);
         this.setState({
@@ -37,19 +47,24 @@ export class Board extends React.Component {
         if(this.isLegalSquare(i)) {
             this.updateLegalSquare(i);
         } else {
-            alert('You must choose a block in the bottom row or directly above an already played block.');
+            alert('You must choose an empty block in the bottom row or one that is directly above an already played block.');
             return;
         }
 
-        const squares = this.state.squares.slice();
+        //updates the squares array
+        const squares = [...this.state.squares];
         squares[i] = this.state.isBlueNext ? "blue" : "red";
         
-        //update the board with the new values
+        //update the board with the new values.  adds to appropriate clickedSquaresX array depending on isBlueNext value
         this.setState({
             squares: squares,
-            clickedSquares:[...this.state.clickedSquares, i] ,
+            clickedSquaresBlue: this.state.isBLueNext ? [...this.state.clickedSquaresBlue, i] : [...this.state.clickedSquaresBlue],
+            clickedSquaresRed: this.state.isBLueNext ? [...this.state.clickedSquaresRed] : [...this.state.clickedSquaresRed, i], 
             isBlueNext: !this.state.isBlueNext
         });
+
+        console.log(clickedSquaresBlue);
+        console.log(clickedSquaresRed);
 
     }
 
