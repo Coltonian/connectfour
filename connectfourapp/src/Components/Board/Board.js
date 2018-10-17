@@ -58,18 +58,55 @@ export class Board extends React.Component {
         //update the board with the new values.  adds to appropriate clickedSquaresX array depending on isBlueNext value
         this.setState({
             squares: squares,
-            clickedSquaresBlue: this.state.isBLueNext ? [...this.state.clickedSquaresBlue, i] : [...this.state.clickedSquaresBlue],
-            clickedSquaresRed: this.state.isBLueNext ? [...this.state.clickedSquaresRed] : [...this.state.clickedSquaresRed, i], 
+            clickedSquaresBlue: this.state.isBlueNext ? [...this.state.clickedSquaresBlue, i] : [...this.state.clickedSquaresBlue],
+            clickedSquaresRed: this.state.isBlueNext ? [...this.state.clickedSquaresRed] : [...this.state.clickedSquaresRed, i], 
             isBlueNext: !this.state.isBlueNext
         });
 
-        console.log(clickedSquaresBlue);
-        console.log(clickedSquaresRed);
+        console.log(this.state.isBlueNext);
+        console.log(this.state.clickedSquaresBlue);
+        console.log(this.state.clickedSquaresRed);
 
     }
 
     calculateWinner(squares) {
-        
+        const winningRowsColumnsDiagonals = [
+            //rows on the board
+            [41, 40, 39, 38, 37, 36, 35],
+            [34, 33, 32, 31, 30, 29, 28],
+            [27, 26, 25, 24, 23, 22, 21],
+            [20, 19, 18, 17, 16, 15, 14],
+            [13, 12, 11, 10, 9, 8, 7],
+            [6, 5, 4, 3, 2, 1, 0],
+
+            //columns on the board
+            [41, 34, 27, 20, 13, 6],
+            [40, 33, 26, 19, 12, 5],
+            [39, 32, 25, 18, 11, 4],
+            [38, 31, 24, 17, 10, 3],
+            [37, 30, 23, 16, 9, 2],
+            [36, 29, 22, 15, 8, 1],
+            [35, 28, 21, 16, 7, 0],
+            
+            //diagnoals on the board
+            [41, 33, 25, 17, 9, 1],
+            [40, 32, 24, 16, 8, 0],
+            [39, 31, 23, 15, 7],
+            [38, 32, 26, 20],
+            [38, 30, 22, 14],
+            [37, 31, 25, 19, 13],
+            [36, 30, 24, 18, 12, 6],
+            [35, 29, 23, 17, 11, 5],
+            [34, 26, 18, 10, 2],
+            [28, 22, 16, 10, 4],
+            [27, 19, 11, 3],
+            [21, 15, 9, 3],
+        ];
+
+    winningRowsColumnsDiagonals.forEach(array => {
+        let currentPlayerArray = 
+        let intersection = array.
+        });
     }
     
     render() {
