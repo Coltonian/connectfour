@@ -60,7 +60,9 @@ export class Board extends React.Component {
             squares: squares,
             clickedSquaresBlue: this.state.isBlueNext ? [...this.state.clickedSquaresBlue, i] : [...this.state.clickedSquaresBlue],
             clickedSquaresRed: this.state.isBlueNext ? [...this.state.clickedSquaresRed] : [...this.state.clickedSquaresRed, i], 
-            isBlueNext: !this.state.isBlueNext
+            isBlueNext: !this.state.isBlueNext,
+            //determines how many connections are needed to win
+            connectionsNeeded: 4,
         });
 
         console.log(this.state.isBlueNext);
@@ -104,8 +106,11 @@ export class Board extends React.Component {
         ];
 
     winningRowsColumnsDiagonals.forEach(array => {
-        let currentPlayerArray = 
-        let intersection = array.
+        let currentPlayerArray = this.state.isBlueNext ? [...this.state.clickedSquaresBlue] : [...this.state.clickedSquaresRed];
+        let intersection = array.filter(v => currentPlayerArray.includes(v));
+        if(intersection.length > this.state.connectionsNeeded) {
+            return true;
+            };
         });
     }
     
@@ -169,10 +174,7 @@ export class Board extends React.Component {
                     {this.renderSquare(1)}
                     {this.renderSquare(0)}
                 </div>
-
-
             </div>
         );
-    }
-}
-
+        }
+    };
