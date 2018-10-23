@@ -63,15 +63,27 @@ export class Board extends React.Component {
             isBlueNext: !this.state.isBlueNext,
             //determines how many connections are needed to win
             connectionsNeeded: 4,
+        },
+            () => {
+                console.log(this.state.clickedSquaresBlue);
+                console.log(this.state.clickedSquaresRed);
+
+                if(this.calculateWinner()) {
+                    
+                    alert((!this.state.isBlueNext ? "Blue player " : "Red player " ) + "wins!  Play again?");
+                    console.log(this.state.legalSquares);
+                    this.setState({
+                        squares: Array(42).fill(null),
+                        clickedSquaresBlue: null,
+                        clickedSquaresRed: null,
+                        legalSquares: [0, 1, 2, 3, 4, 5, 6],
+                    });
+                    console.log(this.state.legalSquares);
+                };
         });
-
-        console.log(this.state.isBlueNext);
-        console.log(this.state.clickedSquaresBlue);
-        console.log(this.state.clickedSquaresRed);
-
     }
 
-    calculateWinner(squares) {
+    calculateWinner() {
         const winningRowsColumnsDiagonals = [
             //rows on the board
             [41, 40, 39, 38, 37, 36, 35],
@@ -88,7 +100,7 @@ export class Board extends React.Component {
             [38, 31, 24, 17, 10, 3],
             [37, 30, 23, 16, 9, 2],
             [36, 29, 22, 15, 8, 1],
-            [35, 28, 21, 16, 7, 0],
+            [35, 28, 21, 14, 7, 0],
             
             //diagnoals on the board
             [41, 33, 25, 17, 9, 1],
@@ -105,13 +117,13 @@ export class Board extends React.Component {
             [21, 15, 9, 3],
         ];
 
-    winningRowsColumnsDiagonals.forEach(array => {
-        let currentPlayerArray = this.state.isBlueNext ? [...this.state.clickedSquaresBlue] : [...this.state.clickedSquaresRed];
-        let intersection = array.filter(v => currentPlayerArray.includes(v));
-        if(intersection.length > this.state.connectionsNeeded) {
-            return true;
-            };
-        });
+        const intersectionGreaterThanFour = (array) => {
+            let currentPlayerArray = !this.state.isBlueNext ? this.state.clickedSquaresBlue : this.state.clickedSquaresRed;
+            let intersection = array.filter(v => currentPlayerArray.includes(v));
+            return intersection.length >= 4;
+        }
+
+        return winningRowsColumnsDiagonals.some(v => intersectionGreaterThanFour(v));
     }
     
     render() {
