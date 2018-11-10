@@ -74,11 +74,14 @@ export class Board extends React.Component {
                     console.log(this.state.legalSquares);
                     this.setState({
                         squares: Array(42).fill(null),
-                        clickedSquaresBlue: null,
-                        clickedSquaresRed: null,
+                        clickedSquaresBlue: [],
+                        clickedSquaresRed: [],
                         legalSquares: [0, 1, 2, 3, 4, 5, 6],
                     });
                     console.log(this.state.legalSquares);
+                    console.log(this.state.clickedSquaresBlue);
+                    console.log(this.state.clickedSquaresRed);
+
                 };
         });
     }
