@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
-import {Board} from '../src/Components/Board/Board';
+import {Board} from '../src/Components/Board/Board.jsx';
+import {Game} from '../src/Components/Game/Game.jsx';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,13 +12,11 @@ class App extends React.Component {
     
   }
   
-
-
   render() {
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Game />
         </div>
         <div className="game-info">
           <div>{}</div>
