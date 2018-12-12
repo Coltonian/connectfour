@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'React';
 import ReactDOM from 'react-dom';
 import './Board.css'
 import { Square } from '../Square/Square.jsx';
+import { Scoreboard } from '../Scoreboard/Scoreboard.jsx';
 
 export class Board extends React.Component {
     constructor(props) {
@@ -139,6 +140,7 @@ export class Board extends React.Component {
                     {this.renderSquare(1)}
                     {this.renderSquare(0)}
                 </div>
+                <Scoreboard />
             </div>
         );
     }
