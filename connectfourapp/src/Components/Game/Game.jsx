@@ -1,14 +1,13 @@
 import React from 'react';
 import {Board} from '../Board/Board.jsx';
 import ReactDOM from 'react-dom';
+import { Scoreboard } from '../Scoreboard/Scoreboard.jsx';
 
 export class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             connectionsToWin: 4,
-            blueGamesWon: [],
-            redGamesWon: [],
         }
     }
 
@@ -82,11 +81,13 @@ export class Game extends React.Component {
 
     render() {
         return (
+
             <Board
                 calculateWinner={this.calculateWinner}
                 onWin={() => this.handleWin()}
             >
             </Board>
+
         )
     }
 }

@@ -14,16 +14,14 @@ export class Scoreboard extends React.Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">Game</th>
                             <th scope="col">Blue</th>
                             <th scope="col">Red</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <td>{this.props.blueGamesWon.length}</td>
+                            <td>{this.props.redGamesWon.length}</td>
                         </tr>
                     </tbody>
                 </table>
