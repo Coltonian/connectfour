@@ -6,6 +6,11 @@ export class Scoreboard extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            blueGamesWon: this.props.blueGamesWon.length,
+            redGamesWon: this.props.redGamesWon.length
+        }
+
     }
 
     render() {
@@ -20,8 +25,8 @@ export class Scoreboard extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{this.props.blueGamesWon.length}</td>
-                            <td>{this.props.redGamesWon.length}</td>
+                            <td>{this.state.blueGamesWon}</td>
+                            <td>{this.state.redGamesWon}</td>
                         </tr>
                     </tbody>
                 </table>

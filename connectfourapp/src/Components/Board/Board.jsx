@@ -72,13 +72,6 @@ export class Board extends React.Component {
         
         if(this.props.calculateWinner(this.state.clickedSquaresBlue, this.state.clickedSquaresRed, this.state.isBlueNext)) {
             alert((this.state.isBlueNext ? "Red" : "Blue") + " wins!  Would you like to play again?");
-            this.setState({
-                blueGamesWon: this.state.isBlueNext ? [...this.state.blueGamesWon, 1] : [...this.state.blueGamesWon],
-                redGamesWon: this.state.isBlueNext ? [...this.state.redGamesWon] : [...this.state.redGamesWon, 1]
-            });
-
-            console.log(this.state.blueGamesWon);
-            console.log(this.state.redGamesWon);
 
             this.setState({
                 squares: Array(42).fill(null),
@@ -86,7 +79,12 @@ export class Board extends React.Component {
                 clickedSquaresBlue: [],
                 clickedSquaresRed: [],
                 legalSquares: [0, 1, 2, 3, 4, 5, 6],
+                blueGamesWon: this.state.isBlueNext ? [...this.state.blueGamesWon, 1] : [...this.state.blueGamesWon],
+                redGamesWon: this.state.isBlueNext ? [...this.state.redGamesWon] : [...this.state.redGamesWon, 1]
             });
+            console.log(this.state.blueGamesWon);
+            console.log(this.state.redGamesWon);
+
             //this.props.handleWin();
         }
     }
