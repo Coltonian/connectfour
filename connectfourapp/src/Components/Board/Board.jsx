@@ -71,19 +71,20 @@ export class Board extends React.Component {
         }); 
         
         if(this.props.calculateWinner(this.state.clickedSquaresBlue, this.state.clickedSquaresRed, this.state.isBlueNext)) {
-            alert((this.state.isBlueNext ? "Red" : "Blue") + " wins!  Would you like to play again?");
-
             this.setState({
                 squares: Array(42).fill(null),
                 isBlueNext: true,
                 clickedSquaresBlue: [],
                 clickedSquaresRed: [],
                 legalSquares: [0, 1, 2, 3, 4, 5, 6],
-                blueGamesWon: this.state.isBlueNext ? [...this.state.blueGamesWon, 1] : [...this.state.blueGamesWon],
-                redGamesWon: this.state.isBlueNext ? [...this.state.redGamesWon] : [...this.state.redGamesWon, 1]
+                blueGamesWon: !this.state.isBlueNext ? [...this.state.blueGamesWon, 1] : [...this.state.blueGamesWon],
+                redGamesWon: this.state.isBlueNext ? [...this.state.redGamesWon, 1] : [...this.state.redGamesWon]
+            }, () => {           
+                console.log(this.state.blueGamesWon);
+                console.log(this.state.redGamesWon); 
+                alert((!this.state.isBlueNext ? "Red" : "Blue") + " wins!  Would you like to play again?");
             });
-            console.log(this.state.blueGamesWon);
-            console.log(this.state.redGamesWon);
+
 
             //this.props.handleWin();
         }
@@ -95,9 +96,9 @@ export class Board extends React.Component {
 
         return(
             <div className="container">
-                    <div className="row">
-                    <Scoreboard blueGamesWon={this.state.blueGamesWon} redGamesWon={this.state.blueGamesWon}/>
-                    </div>
+                <div className="row">
+                    <Scoreboard blueGamesWon={this.state.blueGamesWon} redGamesWon={this.state.redGamesWon}/>
+                </div>
                 <div className="row">
                     <div>
                     <div className="status">{status}</div>

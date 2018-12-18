@@ -13,6 +13,13 @@ export class Scoreboard extends React.Component {
 
     }
 
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            blueGamesWon: newProps.blueGamesWon.length,
+            redGamesWon: newProps.redGamesWon.length,
+        })
+    }
+
     render() {
         return(
             <div>
