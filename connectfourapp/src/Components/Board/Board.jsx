@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './Board.css'
 import { Square } from '../Square/Square.jsx';
