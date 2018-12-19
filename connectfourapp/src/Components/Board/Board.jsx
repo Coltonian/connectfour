@@ -68,26 +68,23 @@ export class Board extends React.Component {
             isBlueNext: !this.state.isBlueNext,
             clickedSquaresBlue: this.state.isBlueNext ? [...this.state.clickedSquaresBlue, i] : [...this.state.clickedSquaresBlue],
             clickedSquaresRed: this.state.isBlueNext ? [...this.state.clickedSquaresRed] : [...this.state.clickedSquaresRed, i],
+        }, () => {
+            if(this.props.calculateWinner(this.state.clickedSquaresBlue, this.state.clickedSquaresRed, this.state.isBlueNext)) {
+                this.setState({
+                    squares: Array(42).fill(null),
+                    isBlueNext: true,
+                    clickedSquaresBlue: [],
+                    clickedSquaresRed: [],
+                    legalSquares: [0, 1, 2, 3, 4, 5, 6],
+                    blueGamesWon: !this.state.isBlueNext ? [...this.state.blueGamesWon, 1] : [...this.state.blueGamesWon],
+                    redGamesWon: this.state.isBlueNext ? [...this.state.redGamesWon, 1] : [...this.state.redGamesWon]
+                }, () => {           
+                    console.log(this.state.blueGamesWon);
+                    console.log(this.state.redGamesWon); 
+                    alert((!this.state.isBlueNext ? "Red" : "Blue") + " wins!  Would you like to play again?");
+                });
+            }
         }); 
-        
-        if(this.props.calculateWinner(this.state.clickedSquaresBlue, this.state.clickedSquaresRed, this.state.isBlueNext)) {
-            this.setState({
-                squares: Array(42).fill(null),
-                isBlueNext: true,
-                clickedSquaresBlue: [],
-                clickedSquaresRed: [],
-                legalSquares: [0, 1, 2, 3, 4, 5, 6],
-                blueGamesWon: !this.state.isBlueNext ? [...this.state.blueGamesWon, 1] : [...this.state.blueGamesWon],
-                redGamesWon: this.state.isBlueNext ? [...this.state.redGamesWon, 1] : [...this.state.redGamesWon]
-            }, () => {           
-                console.log(this.state.blueGamesWon);
-                console.log(this.state.redGamesWon); 
-                alert((!this.state.isBlueNext ? "Red" : "Blue") + " wins!  Would you like to play again?");
-            });
-
-
-            //this.props.handleWin();
-        }
     }
 
     
